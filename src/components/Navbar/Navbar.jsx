@@ -46,17 +46,6 @@ const CategoryNavbar = () => {
           ))}
         </ul>
       </div>
-      <div className={styles.contactInfo}>
-        <p>
-          <FontAwesomeIcon icon={faPhoneVolume} />
-          <span
-            style={{ paddingLeft: "10px" }}
-            className={styles.contactInfoNumber}
-          >
-            123-456-7890
-          </span>
-        </p>
-      </div>
     </div>
   );
 };

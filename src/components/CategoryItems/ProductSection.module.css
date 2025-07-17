@@ -5,7 +5,7 @@
     grid-template-columns: 20% 75%;
     padding: 25px;
     gap: 20px;
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
 }
 
 .categoryItemsContainer{
@@ -34,14 +34,13 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    overflow: scroll;
     padding: 20px;
     justify-content: center;
 }
 
 .productCard{
-    width: 325px;
-    height: 325px;
+    width: 200px;
+    height: 200px;
     background: #fff;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
@@ -58,6 +57,7 @@
     width: 100%;
     height: auto;
     object-fit: cover;
+    display:flex;
     transition: transform 1s ease;
     border-radius: 10px;
 }

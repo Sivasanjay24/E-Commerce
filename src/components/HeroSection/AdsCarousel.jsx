@@ -20,7 +20,7 @@ const ImageCarousel = () => {
         
         <div className={styles.imageItem}>
           <img src="images/wedding.jpg" className={styles.bgimg} alt="Left" />
-          <img src="images/pw.png" className={styles.mask} alt="Left Mask" />
+          <img src="images/old.png" className={styles.mask} alt="Left Mask" />
         </div>
 
        
@@ -31,7 +31,7 @@ const ImageCarousel = () => {
         
         <div className={styles.imageItem}>
           <img src="images/wedding.jpg"  className={styles.bgimg}alt="Right" />
-          <img src="images/old.png" className={styles.mask} alt="Right Mask" />
+          <img src="images/pw.png" className={styles.mask} alt="Right Mask" />
         </div>
       </div>
 
