@@ -1,49 +1,64 @@
 import React, { useState } from "react";
 import styles from "./ProductSection.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
+
 function ProductSection({ items }) {
-  console.log("items", items);
+  const [drawerOpen, setDrawerOpen] = useState(true);
+
   return (
     <div className={styles.productSectionContainer}>
-      {items.length > 0 && (
-        <div className={styles.categoryItemsContainer}>
+      {/* Toggle Drawer Button */}
+      <button
+        className={styles.drawerToggleBtn}
+        onClick={() => setDrawerOpen((prev) => !prev)}
+      >
+        <FontAwesomeIcon icon={drawerOpen ? faTimes : faBars} />
+      </button>
+
+      {/* Drawer: Always exists */}
+      <div
+        className={`${styles.categoryItemsContainer} ${
+          drawerOpen ? styles.drawerOpen : styles.drawerClosed
+        }`}
+      >
+        {items.length > 0 ? (
           <ul>
             {items.map((item, index) => (
-              <li className={styles.itemContainer}>
+              <li key={index} className={styles.itemContainer}>
                 <p style={{ fontWeight: "bolder" }}>{item}</p>
                 <p>(30items)</p>
               </li>
             ))}
           </ul>
-        </div>
-      )}
-      {items.length == 0 && (
-        <img
-          src="/images/sareeAds1.png"
-          alt="sareeimg"
-          width="100%"
-          height="100%"
-          className={styles.sideAdsImg}
-        />
-      )}
+        ) : (
+          <img
+            src="/images/sareeAds1.png"
+            alt="sareeimg"
+            className={styles.sideAdsImg}
+          />
+        )}
+      </div>
+
+      {/* Product Grid */}
       <div className={styles.productItemsContainer}>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30].map((item, index) => (
-          <ProductItem key={index} item={item} />
+        {[...Array(30)].map((_, index) => (
+          <ProductItem key={index} item={index + 1} />
         ))}
       </div>
     </div>
   );
 }
 
-const ProductItem = ({ item, index }) => {
+const ProductItem = ({ item }) => {
   const [liked, setLiked] = useState(false);
   return (
-    <div key={index} className={styles.productCard}>
+    <div className={styles.productCard}>
       <div
         style={{ background: liked ? "white" : "#d32f2f" }}
         onClick={() => setLiked(!liked)}
-        className={styles.likeContainer}>
+        className={styles.likeContainer}
+      >
         <FontAwesomeIcon
           style={{ color: liked ? "#d32f2f" : "white" }}
           icon={faHeart}
@@ -53,4 +68,5 @@ const ProductItem = ({ item, index }) => {
     </div>
   );
 };
+
 export default ProductSection;
