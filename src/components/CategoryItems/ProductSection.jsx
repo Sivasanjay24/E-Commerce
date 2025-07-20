@@ -52,8 +52,14 @@ function ProductSection({ items }) {
 
 const ProductItem = ({ item }) => {
   const [liked, setLiked] = useState(false);
+  const [isHovered, setIsHovered] = useState(false); 
+
   return (
-    <div className={styles.productCard}>
+    <div
+      className={styles.productCard}
+      onMouseEnter={() => setIsHovered(true)} 
+      onMouseLeave={() => setIsHovered(false)} 
+    >
       <div
         style={{ background: liked ? "white" : "#d32f2f" }}
         onClick={() => setLiked(!liked)}
@@ -64,7 +70,22 @@ const ProductItem = ({ item }) => {
           icon={faHeart}
         />
       </div>
-      <img src="/images/sareeImg1.png" alt="" />
+      
+      <img
+        src="/images/sareeImg1.jpg"
+        alt="Product default"
+        className={`${styles.productImage} ${isHovered ? styles.hidden : ''}`}
+      />
+      
+      <img
+        src="/images/sareeImg2.jpg"
+        alt="Product hover"
+        className={`${styles.hoverImage} ${isHovered ? styles.visible : ''}`}
+      />
+      <div className={styles.productDetails}>
+        <h4 className={styles.productName}>Product {item}</h4>
+        <p className={styles.productPrice}>₹{item * 100}</p>
+      </div>
     </div>
   );
 };

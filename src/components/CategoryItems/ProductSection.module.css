@@ -1,136 +1,158 @@
 .productSectionContainer {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    padding: 15px;
-    overflow-x: hidden;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  padding: 15px;
+  overflow-x: hidden;
 }
 
 /* Drawer Toggle Button */
 .drawerToggleBtn {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    z-index: 100;
-    background-color: #d32f2f;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    cursor: pointer;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 100;
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 /* Drawer Sidebar Styles */
 .categoryItemsContainer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 250px;
-    height: 100%;
-    background-color: #f5f5f5;
-    overflow-y: scroll;
-    z-index: 50;
-    transition: transform 0.3s ease-in-out;
-    scrollbar-width: thin;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: auto;
+  background-color: #f5f5f5;
+  overflow-y: scroll;
+  z-index: 50;
+  transition: transform 0.3s ease-in-out;
+  scrollbar-width: thin;
 }
 
 .drawerOpen {
-    transform: translateX(0);
+  transform: translateX(0);
 }
 
 .drawerClosed {
-    transform: translateX(-100%);
+  transform: translateX(-100%);
 }
 
 .itemContainer {
-    width: 100%;
-    padding: 20px 10px;
-    text-align: center;
-    background: #9896966d;
-    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  padding: 20px 10px;
+  text-align: center;
+  background: #9896966d;
+  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
 }
 
 .itemContainer:hover {
-    background: #67656553;
+  background: #67656553;
 }
 
 /* Products */
 .productItemsContainer {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 20px 0px;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px 0px;
+  justify-content: center;
 }
 
 .productCard {
-    width: 200px;
-    height: 200px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 15px;
-    position: relative;
+  width: 225px;
+  height: 300px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  position: relative;
+  overflow: hidden;
 }
 
 .productCard img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 10px;
-    transition: transform 0.6s ease;
+  width: 100%;
+  height: 75%; 
+  object-fit: cover;
+  border-radius: 10%;
+  position: absolute;
+  padding: 10px; 
+  top: 0;
+  left: 0;
+  transition: opacity 1s ease-in-out; 
 }
 
-.productCard img:hover {
-    transform: scale(1.05);
+.productDetails
+{
+    position:absolute;
+    bottom: 20px;
+    background-color: #b2aeae55;
+    text-align: center;
+    border-radius: 10px;
+    width:90%;
+}
+
+.productImage {
+  opacity: 1; 
+  z-index: 2;
+}
+
+.hoverImage {
+  opacity: 0; 
+  z-index: 1;
+}
+.hidden {
+  opacity: 0;
+}
+
+.visible {
+  opacity: 1;
 }
 
 .likeContainer {
-    z-index: 10;
-    position: absolute;
-    padding: 5px 10px;
-    background: #d32f2f;
-    border-radius: 50%;
-    color: white;
-    top: 20px;
-    right: 30px;
-    cursor: pointer;
+  z-index: 10;
+  position: absolute;
+  padding: 5px 10px;
+  background: #d32f2f;
+  border-radius: 50%;
+  color: white;
+  top: 20px;
+  right: 30px;
+  cursor: pointer;
 }
 
 .sideAdsImg {
-    object-fit: cover;
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  border-radius: 10px;
+  margin: 10px;
 }
 
-/* Responsive */
 @media screen and (max-width: 768px) {
-    .productSectionContainer {
-        padding: 10px;
-    }
+  .productSectionContainer {
+    padding: 10px;
+  }
 
-    .categoryItemsContainer {
-        width: 200px;
-    }
+  .categoryItemsContainer {
+    width: 200px;
+  }
 
-    .drawerToggleBtn {
-        top: 10px;
-        left: 10px;
-    }
+  .drawerToggleBtn {
+    top: 10px;
+    left: 10px;
+  }
 
-    .sideAdsImg {
-        display: none;
-    }
-}
-
-
-.sideAdsImg {
-    object-fit: cover;
-    width: 100%;
-    height: auto;
-    max-height: 300px;
-    border-radius: 10px;
-    margin: 10px;
+  .sideAdsImg {
+    display: none;
+  }
 }

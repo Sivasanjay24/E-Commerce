@@ -4,7 +4,7 @@ import styles from "./ImageCarousel.module.css";
 const images = [
   "/images/adsImg1.png",
   "/images/adsImg2.jpg",
-  "/images/sareeImg1.png",
+  "/images/adsImg3.jpg",
 ];
 
 const ImageCarousel = () => {
