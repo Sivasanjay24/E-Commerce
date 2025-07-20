@@ -1,8 +1,3 @@
-/* .carousel {
-  width: 100vw;
-  max-width: 600px;
-  position: relative;
-  } */
 
 .imageWrapper {
   display: flex;
@@ -22,7 +17,6 @@
 .imageItem.center {
   flex: 2.4;
 }
-
 
 .imageItem img {
   width: 100%;
@@ -54,7 +48,6 @@
   transition:transform 0.5s ease;
   pointer-events: none;
 }
-
 
 .dots {
   display: flex;

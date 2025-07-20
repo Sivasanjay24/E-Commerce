@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react"; 
 import styles from "./ImageCarousel.module.css";
 
 const images = [
@@ -13,22 +13,21 @@ const ImageCarousel = () => {
   const nextSlide = () => setCurrent((prev) => (prev + 1) % images.length);
   const prevSlide = () =>
     setCurrent((prev) => (prev - 1 + images.length) % images.length);
+  useEffect(() => {
+    const slideInterval = setInterval(nextSlide, 4000); 
+    return () => clearInterval(slideInterval);
+  }, [current]);
 
   return (
     <div className={styles.carousel}>
       <div className={styles.imageWrapper}>
-        
         <div className={styles.imageItem}>
           <img src="images/wedding.jpg" className={styles.bgimg} alt="Left" />
           <img src="images/old.png" className={styles.mask} alt="Left Mask" />
         </div>
-
-       
         <div className={`${styles.imageItem} ${styles.center}`}>
           <img src={images[current]} alt={`Slide ${current}`} />
         </div>
-
-        
         <div className={styles.imageItem}>
           <img src="images/wedding.jpg"  className={styles.bgimg}alt="Right" />
           <img src="images/pw.png" className={styles.mask} alt="Right Mask" />

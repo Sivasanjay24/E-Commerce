@@ -6,11 +6,12 @@ import {
   faAngleUp,
   faCartShopping,
   faHeart,
-  faPhoneVolume,
+  faShop,
   faSearch,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { faEllipsis } from "@fortawesome/free-solid-svg-icons/faEllipsis";
 const CategoryNavbar = () => {
   const [selectedCategory, setSelectedCategory] = useState("Hands of Manufacture");
 
@@ -112,16 +113,16 @@ const MainNavbar = () => {
       {/* account info */}
       <div className={styles.accountInfoContainer}>
         <div className={styles.infoWrapper}>
-          <FontAwesomeIcon icon={faUser} />
-          Account
-        </div>
-        <div className={styles.infoWrapper}>
-          <FontAwesomeIcon icon={faHeart} />
-          Wishlist
-        </div>
-        <div className={styles.infoWrapper}>
           <FontAwesomeIcon icon={faCartShopping} />
           Cart
+        </div>
+        <div className={styles.infoWrapper}>
+          <FontAwesomeIcon icon={faShop} />
+          Become a Seller
+        </div>
+        <div className={styles.infoWrapper}>
+          <FontAwesomeIcon icon={faEllipsis}/>
+          More
         </div>
       </div>
     </div>
