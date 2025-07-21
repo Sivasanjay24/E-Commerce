@@ -16,6 +16,13 @@
 
 .imageItem.center {
   flex: 2.4;
+  transition: transform 0.5s ease;
+}
+
+.imageItem.center:hover
+{
+  transform: scale(1.02);
+  transition: all 0.5s ease;
 }
 
 .imageItem img {
