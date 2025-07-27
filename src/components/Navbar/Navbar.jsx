@@ -6,15 +6,18 @@ import {
   faAngleUp,
   faCartShopping,
   faHeart,
-  faPhoneVolume,
+  faEllipsis,
   faSearch,
   faUser,
+  faShop
 } from "@fortawesome/free-solid-svg-icons";
 const CategoryNavbar = () => {
   const [selectedCategory, setSelectedCategory] = useState(
     "Hands of Manufacture"
   );
   const categories = ["Hands of Manufacture", "Domestic", "Bulk Products"];
+
+  
 
   return (
     <div className={styles.categoryNavContainer}>
@@ -56,6 +59,8 @@ const MainNavbar = () => {
 ];
 
   const [isCategoryListOpen, setIsCategoryListOpen] = useState(false);
+  const [isMoreOpen, setIsMoreOpen] = useState(false);
+
   return (
     <div className={styles.mainNavbarContainer}>
       {/* logo and company name */}
@@ -100,16 +105,49 @@ const MainNavbar = () => {
       {/* account info */}
       <div className={styles.accountInfoContainer}>
         <div className={styles.infoWrapper}>
-          <FontAwesomeIcon icon={faUser} />
-          Account
-        </div>
-        <div className={styles.infoWrapper}>
-          <FontAwesomeIcon icon={faHeart} />
-          Wishlist
-        </div>
-        <div className={styles.infoWrapper}>
           <FontAwesomeIcon icon={faCartShopping} />
           Cart
+        </div>
+        <div className={styles.infoWrapper}>
+          <FontAwesomeIcon icon={faShop} />
+          Become a Seller
+        </div>
+
+        
+        <div
+          className={styles.infoWrapper}
+          style={{ cursor: "pointer", position: "relative" }}
+          onClick={() => setIsMoreOpen((prev) => !prev)}
+        >
+          <FontAwesomeIcon icon={faEllipsis} />
+          More
+
+          
+          {isMoreOpen && (
+            <div
+              className={styles.moreDropdown}
+              style={{
+                position: "absolute",
+                top: "110%",
+                right: 0,
+                background: "white",
+                boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+                borderRadius: "5px",
+                padding: "10px",
+                zIndex: 1000,
+                minWidth: "120px",
+              }}
+            >
+              <div className={styles.dropdownItem} style={{ padding: "8px 10px", cursor: "pointer", display: "flex", alignItems: "center", gap: "8px" }}>
+                <FontAwesomeIcon icon={faUser} />
+                Account
+              </div>
+              <div className={styles.dropdownItem} style={{ padding: "8px 10px", cursor: "pointer", display: "flex", alignItems: "center", gap: "8px" }}>
+                <FontAwesomeIcon icon={faHeart} />
+                Wishlist
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
