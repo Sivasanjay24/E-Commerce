@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./Navbar.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,13 +11,28 @@ import {
   faUser,
   faShop
 } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
+
 const CategoryNavbar = () => {
-  const [selectedCategory, setSelectedCategory] = useState(
-    "Hands of Manufacture"
-  );
+  const [selectedCategory, setSelectedCategory] = useState("Hands of Manufacture");
+  const navigate = useNavigate();
+
   const categories = ["Hands of Manufacture", "Domestic", "Bulk Products"];
 
-  
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+
+    switch (category) {
+      case "Domestic":
+        navigate("/domestic");
+        break;
+      case "Bulk Products":
+        navigate("/bulk-products");
+        break;
+      default:
+        navigate("/");
+    }
+  };
 
   return (
     <div className={styles.categoryNavContainer}>
@@ -26,10 +41,9 @@ const CategoryNavbar = () => {
           {categories.map((category) => (
             <li
               key={category}
-              onClick={() => setSelectedCategory(category)}
+              onClick={() => handleCategoryClick(category)}
               style={{
-                borderBottom:
-                  selectedCategory === category ? "5px solid #F53E32" : "",
+                borderBottom: selectedCategory === category ? "5px solid #F53E32" : "",
                 cursor: "pointer",
               }}
             >
@@ -42,67 +56,89 @@ const CategoryNavbar = () => {
   );
 };
 
-// search box -- company logo -- account info
-
 const MainNavbar = () => {
-  //  category list
-    const categories = [
-  "ALL",
-  "COTTON",
-  "SILK",
-  "LINEN",
-  "JUTE",
-  "SYNTHETIC",
-  "BLENDED",
-  "WEAVING TECHNIQUE",
-  "OCCASION & AESTHETIC"
-];
+  const categories = [
+    "OCCASION & AESTHETIC",
+    "WEAVING TECHNIQUE",
+    "BLENDED",
+    "SYNTHETIC",
+    "JUTE",
+    "LINEN",
+    "SILK",
+    "COTTON",
+  ];
 
   const [isCategoryListOpen, setIsCategoryListOpen] = useState(false);
   const [isMoreOpen, setIsMoreOpen] = useState(false);
 
+  const categoryRef = useRef(null);
+  const moreRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        categoryRef.current &&
+        !categoryRef.current.contains(event.target)
+      ) {
+        setIsCategoryListOpen(false);
+      }
+
+      if (
+        moreRef.current &&
+        !moreRef.current.contains(event.target)
+      ) {
+        setIsMoreOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div className={styles.mainNavbarContainer}>
-      {/* logo and company name */}
+      {/* Logo */}
       <div className={styles.logoContainer}>
         <img src="/images/logo.png" alt="Company Logo" />
         <div className={styles.companyContext}>
           <h3>Sarees</h3>
-          <p>A Treasure of Hertitage</p>
+          <p>A Treasure of Heritage</p>
         </div>
       </div>
-      {/* search box */}
+
+      {/* Search Box */}
       <div className={styles.searchBoxContainer}>
         <input
           className={styles.searchBox}
           placeholder="Search for items..."
           type="text"
         />
-        <div className={styles.categoryBtn} >
+        <div className={styles.categoryBtn} ref={categoryRef}>
           <button onClick={() => setIsCategoryListOpen(!isCategoryListOpen)}>
             <span className={styles.categoryContext}>All Categories{" "}</span>
-            <span>
-              <FontAwesomeIcon
-
-                style={{ color: "#F53E32", fontSize: "0.8rem" }}
-                icon={isCategoryListOpen?faAngleUp:faAngleDown}
-              />
-            </span>
+            <FontAwesomeIcon
+              style={{ color: "#F53E32", fontSize: "0.8rem" }}
+              icon={isCategoryListOpen ? faAngleUp : faAngleDown}
+            />
           </button>
-          {isCategoryListOpen && <ul className={styles.categoryList}>
-            {categories.map((category) => (
-              <li  key={category} className={styles.categoryItem}>
-                {category}
-              </li>
-            ))}
-          </ul>}
+          {isCategoryListOpen && (
+            <ul className={styles.categoryList}>
+              {categories.map((category) => (
+                <li key={category} className={styles.categoryItem}>
+                  {category}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
         <button className={styles.searchBtn}>
           <FontAwesomeIcon icon={faSearch} />
         </button>
       </div>
 
-      {/* account info */}
+      {/* Account Info */}
       <div className={styles.accountInfoContainer}>
         <div className={styles.infoWrapper}>
           <FontAwesomeIcon icon={faCartShopping} />
@@ -113,16 +149,16 @@ const MainNavbar = () => {
           Become a Seller
         </div>
 
-        
+        {/* More Dropdown */}
         <div
           className={styles.infoWrapper}
           style={{ cursor: "pointer", position: "relative" }}
           onClick={() => setIsMoreOpen((prev) => !prev)}
+          ref={moreRef}
         >
           <FontAwesomeIcon icon={faEllipsis} />
           More
 
-          
           {isMoreOpen && (
             <div
               className={styles.moreDropdown}
